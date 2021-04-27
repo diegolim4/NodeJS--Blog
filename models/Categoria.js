@@ -7,7 +7,7 @@ const Categoria = new Schema({
         required: true
     },
 
-    slung:{
+    slug:{
         type:String,
         required: true
     },
