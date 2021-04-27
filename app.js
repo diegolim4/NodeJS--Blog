@@ -7,7 +7,8 @@
     const admin = require('./routes/admin')
     const path = require('path')
 
-    //const mongoose = require('mongoose')
+    const mongoose = require('mongoose')
+
 //Configuração
     
     //Body-Parser
@@ -17,16 +18,20 @@
     //Handlebars
         app.engine('handlebars', handlebars({defaultLayout: 'main'}))
         app.set('view engine', 'handlebars')
+    
     // Mongoose
-        //Em breve   
+        mongoose.Promise = global.Promise; //Para evitar o erro
+        mongoose.connect('mongodb://localhost/blogapp').then( ()=>{
+            console.log('Conectado ao banco de dados')
+        }).catch((err)=>{
+            console.log(`Erro ao se conectar ${err}`)
+        })
     
     // Public
         app.use(express.static(path.join(__dirname, 'public')))
 
-
-//Rotas
-    app.use('/admin', admin)
-    
+        //Rotas
+    app.use('/admin', admin)  
 
 //Outros
 const PORT = 2021
