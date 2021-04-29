@@ -25,8 +25,12 @@ const Postagem = new Schema({
         type: Schema.Types.ObjectId,  // O tipo vai ser um id de algum objeto
         ref: 'categorias',  // a ref é o nome do model que queremos pegar o id 
         required: true
-    }
+    },
 
+    data:{
+        type: Date,
+        default: Date.now()
+    }
 })
 
 mongoose.model('postagens', Postagem)
