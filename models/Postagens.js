@@ -12,7 +12,7 @@ const Postagem = new Schema({
         required: true
     },
 
-    descrição: {
+    descricao: {
         type: String,
         required: true
     },
@@ -25,12 +25,8 @@ const Postagem = new Schema({
         type: Schema.Types.ObjectId,  // O tipo vai ser um id de algum objeto
         ref: 'categorias',  // a ref é o nome do model que queremos pegar o id 
         required: true
-    },
-
-    data:{
-        type: Date,
-        deafault: Data.now()
     }
+
 })
 
 mongoose.model('postagens', Postagem)
