@@ -1,12 +1,7 @@
 <h4>Categorias: </h4>
-
+<hr>
 {{#each categorias}}
-    <ul class="list-group mt-2">
-  <li>
-    {{nome}}    
-  </li>
-</ul>
-
+    <a href="/categorias/{{slug}}"><h6>{{nome}}</h6></a>
 {{else}}
-
+    Nenhuma Categoria
 {{/each}}
