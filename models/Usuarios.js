@@ -16,6 +16,11 @@ const Usuario = new Schema ({
         type: String,
         required: true
     },
+
+    adminTrue:{
+        type: Number,
+        default: 0
+    }
    
 })
 
