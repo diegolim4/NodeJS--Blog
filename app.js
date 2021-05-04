@@ -12,6 +12,8 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const { schedulingPolicy } = require('cluster')
 
+const usuarios = require('./routes/usuario')
+
 require('./models/Categoria')
 const Categoria = mongoose.model('categorias')
 
@@ -117,7 +119,7 @@ app.get('/categorias/:slug', (req, res) => {
 })
 
 app.use('/admin', admin)
-
+app.use('/usuarios', usuarios)
 
 const PORT = 2021
 app.listen(PORT, () => {
