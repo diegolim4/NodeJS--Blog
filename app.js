@@ -2,23 +2,21 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
-
 const app = express()
 const admin = require('./routes/admin')
 const path = require('path')
-
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('connect-flash')
 const { schedulingPolicy } = require('cluster')
-
 const usuarios = require('./routes/usuario')
-
 require('./models/Categoria')
 const Categoria = mongoose.model('categorias')
-
 require('./models/Postagens')
 const Postagens = mongoose.model('postagens')
+const passport = require('passport')
+require('./config/auth')(passport)
+
 //Configuração
 //Sessão
 app.use(session({
@@ -26,6 +24,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())  //chamando o flash
 
 //Middleware
@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/postagens/:slug', (req, res)=> {
+app.get('/postagens/:slug', (req, res) => {
 
     Postagens.findOne({ slug: req.params.slug }).lean().then((postagens) => {
         if (postagens) {
@@ -87,9 +87,9 @@ app.get('/404', (req, res) => {
 
 app.get('/categorias', (req, res) => {
     Categoria.find().lean().then((categorias) => {
-        
+
         res.render('categorias/index', { categorias: categorias })
-    
+
     }).catch((err) => {
         req.flash('error_msg', 'Houve um erro interno ao listar as categorias')
         res.redirect('/')
@@ -102,7 +102,7 @@ app.get('/categorias/:slug', (req, res) => {
 
             Postagens.find({ categoria: categoria._id }).lean().then((postagens) => {
 
-            res.render('categorias/postagens', { postagens: postagens, categoria: categoria })
+                res.render('categorias/postagens', { postagens: postagens, categoria: categoria })
 
             }).catch((err) => {
                 req.flash('error_msg', 'Houve um erro a listar os posts!')
