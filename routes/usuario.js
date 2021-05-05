@@ -3,14 +3,15 @@ const router = express.Router()
 const mongoose = require('mongoose')
 require('../models/Usuarios')
 const Usuario = mongoose.model('usuarios')
-
 const bcrypt = require('bcryptjs')
+const passport = require('passport')
+
 
 router.get('/registro', (req, res) => {
     res.render('usuarios/registro')
 })
 
-
+//Rota de validação de usuário
 router.post('/registro', (req, res) => {
     var erros = []
 
@@ -76,8 +77,18 @@ router.post('/registro', (req, res) => {
     }
 })
 
-router.get('/login', (req, res) =>{
+router.get('/login', (req, res) => {
     res.render('usuarios/login')
 })
+
+//Rota de autetificação
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/usuarios/login',
+        failureFlash: true
+    })(req, res, next)
+})
+
 
 module.exports = router
