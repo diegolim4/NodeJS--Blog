@@ -6,7 +6,7 @@ module.exports = {
         if (req.isAuthenticated() && req.user.isAdmin == 1 ) {
             return next()
         }
-        req.flash('error_msg', 'Somente Admin pode acessar!')
+        req.flash('error_msg', 'Você Precisar ser uma Admin!')
         res.redirect('/')
     }
 }
