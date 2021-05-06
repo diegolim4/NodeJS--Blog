@@ -32,7 +32,8 @@ app.use(flash())  //chamando o flash
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error');
+    res.locals.error = req.flash('error')
+    res.locals.user = req.user || null  // variavel global para armazenar os dados do usuário logado
     next()
 })
 
