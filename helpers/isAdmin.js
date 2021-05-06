@@ -1,4 +1,4 @@
-//Verificar se um usuário é admin
+//Verificar se um usuário é admin e protegendo as rotas 
 
 module.exports = {
     isAdmin: function (req, res, next) {
