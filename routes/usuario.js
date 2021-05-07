@@ -7,6 +7,9 @@ const bcrypt = require('bcryptjs')
 const passport = require('passport')
 
 
+
+
+
 router.get('/registro', (req, res) => {
     res.render('usuarios/registro')
 })

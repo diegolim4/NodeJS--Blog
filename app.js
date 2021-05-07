@@ -68,6 +68,13 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/postagens', (req, res) => {
+    Postagens.find().lean().then((postagens) => {
+        res.render('usuarios/posts', {postagens: postagens})
+    })
+})
+
+
 app.get('/postagens/:slug', (req, res) => {
 
     Postagens.findOne({ slug: req.params.slug }).lean().then((postagens) => {
