@@ -6,9 +6,18 @@ const Categoria = mongoose.model('categorias') //'categorias' é o mesmo nome do
 require('../models/Postagens')
 const Postagem = mongoose.model('postagens')
 const { isAdmin } = require('../helpers/isAdmin')
+require('../models/Usuarios')
+const Usuarios = mongoose.model('usuarios')
 
 router.get('/', isAdmin, (req, res) => {
-    res.render('admin/index')
+    Usuarios.find().lean().map(usuarios => {
+        const result = {
+            nome: usuarios.nome
+        }
+        return result
+    }).then((usuarios) => {
+        res.render('admin/index', { usuarios: usuarios })
+    })
 })
 
 router.get('/posts', isAdmin, (req, res) => {
