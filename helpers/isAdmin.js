@@ -3,7 +3,7 @@
 module.exports = {
     isAdmin: function (req, res, next) {
 
-        if (req.isAuthenticated() && req.user.isAdmin == 1 ) {
+        if (req.isAuthenticated() && req.user.adminTrue !== 1) {
             return next()
         }
         req.flash('error_msg', 'Você Precisar ser uma Admin!')

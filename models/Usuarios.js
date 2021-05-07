@@ -10,16 +10,16 @@ const Usuario = new Schema ({
     email:{
         type: String,
         required: true
+    },   
+
+    adminTrue:{
+        type: Number,
+        default: 0
     },
 
     senha:{
         type: String,
         required: true
-    },
-
-    adminTrue:{
-        type: Number,
-        default: 0
     }
    
 })

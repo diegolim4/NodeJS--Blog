@@ -128,7 +128,7 @@ router.get('/postagens/add', isAdmin, (req, res) => {
     })
 })
 //Salvar as postagens no banco de dados
-router.post('/postagens/nova', isAdmin, (req, res) => {
+router.post('/postagens/nova', (req, res) => {
 
     var erros = []
 
