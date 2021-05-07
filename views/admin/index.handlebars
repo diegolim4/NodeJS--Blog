@@ -1,1 +1,13 @@
-<h1>Hello World</h1>
+<h2>Página Administrativa</h2>
+
+{{#each usuarios}}
+    <h4>Seja Bem vindo! {{nome}}</h4> 
+{{else}}
+{{/each}}
+
+
+ <a href="/admin/postagens/add"><Button type="submit" class="btn btn-info mt-3"> Nova Postagem</Button></a>
+ <a href="/admin/categorias/add"><Button type="submit" class="btn btn-info mt-3"> Nova Categoria</Button></a>
+ <a href="/admin/postagens"><Button type="submit" class="btn btn-primary mt-3"> Editar Postagens</Button></a>
+ <a href="/admin/categorias"><Button type="submit" class="btn btn-primary mt-3"> Editar Categorias</Button></a>
+
